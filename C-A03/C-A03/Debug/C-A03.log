@@ -1,0 +1,3 @@
+﻿  Source.cpp
+D:\College\CIS111\C-A03\C-A03\Source.cpp(38,10): warning C4477: 'printf' : format string '%-8x' requires an argument of type 'unsigned int', but variadic argument 3 has type 'char *'
+  C-A03.vcxproj -> D:\College\CIS111\C-A03\Debug\C-A03.exe

@@ -1,0 +1,8 @@
+﻿  Source.cpp
+D:\College\CIS111\C-A02\C-A02\Source.cpp(6,13): warning C4326: return type of 'main' should be 'int' instead of 'void'
+D:\College\CIS111\C-A02\C-A02\Source.cpp(25,35): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\College\CIS111\C-A02\C-A02\Source.cpp(40,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\College\CIS111\C-A02\C-A02\Source.cpp(42,10): warning C4129: '(': unrecognized character escape sequence
+D:\College\CIS111\C-A02\C-A02\Source.cpp(42,10): warning C4129: ')': unrecognized character escape sequence
+D:\College\CIS111\C-A02\C-A02\Source.cpp(54,36): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  C-A02.vcxproj -> D:\College\CIS111\C-A02\Debug\C-A02.exe
