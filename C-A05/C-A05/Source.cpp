@@ -1,11 +1,12 @@
 #pragma warning(disable:4996)
 #include <stdio.h>
 #include <conio.h>
-#include <stdlib.h>
 
 int main() {
 	char horizontalDivider = '-', verticalDivider = '|';
 	int columns = 0, rows = 0;
+	int r = 0, c = 0; //Variables for use in loops
+	int columnSpace = 1; //Width of columns
 
 	//Get user input
 	printf("Please enter the horizontal divider symbol: ");
@@ -22,51 +23,39 @@ int main() {
 	rewind(stdin);
 	printf("\n");
 
-	//Build Grid
-	int** grid;
-	grid = malloc(columns * sizeof(int *));
-
-	for (int i = 0; i <= columns; i++) {
-		grid[i] = malloc(rows * sizeof(int));
-	}
-
-	//Fill Grid
-	for (int x = 0; x <= columns; x++) {
-		grid[0][x] = x;
-	}
-
-	for (int x = 0; x <= rows; x++) {
-		grid[x + 1][0] = (x + 1);
-	}
-
-	for (int x = 1; x <= rows; x++) {
-		for (int y = 1; y <= columns; y++) {
-			grid[x][y] = grid[x][0] * grid[0][y];
-		}
+	//Find maximum column width
+	int largestSum = columns * rows; //Find largest possible number on the table
+	while (largestSum != 0) {
+		largestSum = largestSum / 10;
+		columnSpace++;
 	}
 
 	//Print Table
-	for (int c = 0; c < (rows + 1); c++) {
-		for (int d = 0; d < (columns + 1); d++) {
-			if ((c == 0) && (d == 0)) {
-				printf("%*c", 4, verticalDivider);
-			}
-			else {
-				printf("%*d%c", 4, grid[c][d], verticalDivider);
-			}
-		}
-		printf("\n");
-		for (int e = 0; e < (columns + 1); e++) {
-			printf("%c%c%c+", horizontalDivider, horizontalDivider, horizontalDivider);
-		}
-		printf("\n");
+	printf("%*c", (columnSpace + 1), verticalDivider);
+
+	for (c = 1; c <= columns; c++) { //Print Top Headings
+		printf("%*d%c", columnSpace, c, verticalDivider);
 	}
 
-	//Free Memory
-	for (int i = 0; i < rows; i++) {
-		free(grid[i]);
+	printf("\n");
+
+	for (c = 0; c <= columns; c++) { //Print Heading Divider
+		for (int s = 1; s <= columnSpace; s++) {
+			printf("-");
+		}
+		printf("%c", verticalDivider);
 	}
-	free(grid);
+
+	printf("\n");
+
+	for (r = 1; r <= rows; r++) { //Print Rows
+		printf("%*d%c", columnSpace, r, verticalDivider);
+		for (c = 1; c <= columns; c++) {
+			int result = r * c;
+			printf("%*d%c", columnSpace, result, verticalDivider);
+		}
+		printf("\n");
+	}
 
 	_getch();
 	return 0;
