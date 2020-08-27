@@ -2,15 +2,15 @@
 #include <stdio.h>
 #include<conio.h>
 
-#define arraySize 5
+#define ARRAY_SIZE 5
 
 int main() {
 	//Declare Variables
-	char charArray[arraySize];
+	char charArray[ARRAY_SIZE];
 	char phantomAbsorb;
 
 	//Fill array with Spaces
-	for (int i = 0; i < arraySize; i++) {
+	for (int i = 0; i < ARRAY_SIZE; i++) {
 		charArray[i] = ' ';
 	}
 
@@ -34,7 +34,7 @@ int main() {
 
 	//Display Output to Console
 	printf("DEC    | ASCII | ADDRESS\n");
-	for (int i = 0; i < arraySize; i++) {
+	for (int i = 0; i < ARRAY_SIZE; i++) {
 		printf("%-8d%-8c%-8x\n", charArray[i], charArray[i], &charArray[i]);
 	}
 	

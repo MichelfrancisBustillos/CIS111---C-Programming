@@ -5,7 +5,7 @@
 int main() {
 	char horizontalDivider = '-', verticalDivider = '|';
 	int columns = 0, rows = 0;
-	int r = 0, c = 0; //Variables for use in loops
+	int rowCounter = 0, columnCounter = 0; //Variables for use in loops
 	int columnSpace = 1; //Width of columns
 
 	//Get user input
@@ -33,13 +33,13 @@ int main() {
 	//Print Table
 	printf("%*c", (columnSpace + 1), verticalDivider);
 
-	for (c = 1; c <= columns; c++) { //Print Top Headings
-		printf("%*d%c", columnSpace, c, verticalDivider);
+	for (columnCounter = 1; columnCounter <= columns; columnCounter++) { //Print Top Headings
+		printf("%*d%c", columnSpace, columnCounter, verticalDivider);
 	}
 
 	printf("\n");
 
-	for (c = 0; c <= columns; c++) { //Print Heading Divider
+	for (columnCounter = 0; columnCounter <= columns; columnCounter++) { //Print Heading Divider
 		for (int s = 1; s <= columnSpace; s++) {
 			printf("-");
 		}
@@ -48,10 +48,10 @@ int main() {
 
 	printf("\n");
 
-	for (r = 1; r <= rows; r++) { //Print Rows
-		printf("%*d%c", columnSpace, r, verticalDivider);
-		for (c = 1; c <= columns; c++) {
-			int result = r * c;
+	for (rowCounter = 1; rowCounter <= rows; rowCounter++) { //Print Rows
+		printf("%*d%c", columnSpace, rowCounter, verticalDivider);
+		for (columnCounter = 1; columnCounter <= columns; columnCounter++) {
+			int result = rowCounter * columnCounter;
 			printf("%*d%c", columnSpace, result, verticalDivider);
 		}
 		printf("\n");

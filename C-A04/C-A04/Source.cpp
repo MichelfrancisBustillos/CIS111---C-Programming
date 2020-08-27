@@ -24,10 +24,10 @@
 #define UPPERCASE_STOP 90
 #define LOWERCASE_START 97
 #define LOWERCASE_STOP 122
-#define TABLE_BREAK 127
+#define TABLE_BREAK 128
 
 int main() {
-	char keyStroke = 0;
+	unsigned char keyStroke = 0;
 	int typeCode = -1, subTypeCode = -1;
 
 	// GET THE KEYSTROKE (remember to clean phantoms)
@@ -56,7 +56,7 @@ int main() {
 	}
 	else {
 		typeCode = SYMBOL;
-		if (keyStroke <= TABLE_BREAK) {
+		if (keyStroke < TABLE_BREAK) {
 			subTypeCode = LOWER_ASCII;
 		}
 		else {
