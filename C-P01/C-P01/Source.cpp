@@ -92,7 +92,7 @@ int main() {
 	}
 
 	//Output Results
-	printf("%d %c %d = %.2f\n", firstNumber, operation, secondNumber, answer);
+	printf("%d %c %d = %.4f\n", firstNumber, operation, secondNumber, answer);
 
 	_getch();
 	return 0;
