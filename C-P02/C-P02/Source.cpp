@@ -1,16 +1,20 @@
+#pragma warning(disable:4996)
 // INCLUDES
 #include <stdio.h>
+#include <stdlib.h>
 
 // DEFINES
 #ifndef __TRUE_FALSE__
-#define __TRUE_FALSE__
-#define TRUE 1
-#define FALSE 0
+	#define __TRUE_FALSE__
+	#define TRUE 1
+	#define FALSE 0
 #endif
 
+
 // ROWS and COLS must be between 1 and 9
-#define ROWS 7
-#define COLS 7
+#define ROWS 3
+
+#define COLS 3
 
 // MARKER CODES
 #define MARK_ONE 'X'
@@ -43,89 +47,53 @@ int PlayerMove(int, int, char[ROWS][COLS], char);
 int VictoryCheck(int, char[ROWS][COLS]);
 void DisplayVictoryMessage(int);
 void errorHandler(char);
+void clearScreen();
 
 // MAIN
 int main() {
 	// declare variables
 	char board[ROWS][COLS];
+	int playerRow = 0;
+	int playerCol = 0;
+	int errorCatcher = BLANK;
+	int victoryCatcher = NO_WIN;
 
-	// PRODUCE A NO_WIN CONDITION
-	// initialize board
-	InitializeBoard(board);
-	// populate board
-	PlayerMove(1, 1, board, MARK_ONE);
-	PlayerMove(1, 2, board, MARK_ONE);
-	// display the board
-	DisplayBoard(board);
-	// display victory message
-	DisplayVictoryMessage(VictoryCheck(CONSECUTIVE_MARKS_REQUIRED, board));
+	InitializeBoard(board);	//Initialize blank board
+	DisplayBoard(board);	//Display blank board
 
-	// PRODUCE A HORIZONTAL VICTORY
-	// initialize board
-	InitializeBoard(board);
-	// populate board
-	PlayerMove(2, 1, board, MARK_TWO);
-	PlayerMove(2, 2, board, MARK_TWO);
-	PlayerMove(2, 3, board, MARK_TWO);
-	// display the board
-	DisplayBoard(board);
-	// display victory message
-	DisplayVictoryMessage(VictoryCheck(CONSECUTIVE_MARKS_REQUIRED, board));
+	while (victoryCatcher == NO_WIN) {	//Play until win or error
+		while (errorCatcher != CODE_OK) {	//Prompt unitl a valid coord is entered
+			printf("Player One: Choose a space by entering the row you would like to mark: ");
+			scanf("%i", &playerRow);
+			printf("Enter the column you would like to mark: ");
+			scanf("%i", &playerCol);
+			errorCatcher = PlayerMove(playerRow, playerCol, board, MARK_ONE);
+			errorHandler(errorCatcher);
+		}
+		clearScreen();
+		DisplayBoard(board);
+		victoryCatcher = VictoryCheck(CONSECUTIVE_MARKS_REQUIRED, board);	//Check for a winner
+		if (victoryCatcher != NO_WIN) {	//Exit game if win or error achieved
+			break;
+		}
 
-	// PRODUCE A VERTICAL VICTORY
-	// initialize board
-	InitializeBoard(board);
-	// populate board
-	PlayerMove(1, 1, board, MARK_TWO);
-	PlayerMove(2, 1, board, MARK_TWO);
-	PlayerMove(3, 1, board, MARK_TWO);
-	// display the board
-	DisplayBoard(board);
-	// display victory message
-	DisplayVictoryMessage(VictoryCheck(CONSECUTIVE_MARKS_REQUIRED, board));
+		errorCatcher = BLANK;	//Reset errorCatcher for next player
+		while (errorCatcher != CODE_OK) {	//Prompt unitl a valid coord is entered
+			printf("Player Two: Choose a space by entering the row you would like to mark: ");
+			scanf("%i", &playerRow);
+			printf("Enter the column you would like to mark: ");
+			scanf("%i", &playerCol);
+			errorCatcher = PlayerMove(playerRow, playerCol, board, MARK_TWO);
+			errorHandler(errorCatcher);
+		}
+		errorCatcher = BLANK;	//Reset errorCatcher for next player
+		clearScreen();
+		DisplayBoard(board);
+		victoryCatcher = VictoryCheck(CONSECUTIVE_MARKS_REQUIRED, board);	//Check for a winner
+	}
 
-	// PRODUCE A DIAGONALDOWN VICTORY
-	// initialize board
-	InitializeBoard(board);
-	// populate board
-	PlayerMove(1, 1, board, MARK_ONE);
-	PlayerMove(2, 2, board, MARK_ONE);
-	PlayerMove(3, 3, board, MARK_ONE);
-	// display the board
-	DisplayBoard(board);
-	// display victory message
-	DisplayVictoryMessage(VictoryCheck(CONSECUTIVE_MARKS_REQUIRED, board));
+	DisplayVictoryMessage(victoryCatcher);
 
-	// PRODUCE A DIAGONALUP VICTORY
-	// initialize board
-	InitializeBoard(board);
-	// populate board
-	PlayerMove(3, 1, board, MARK_TWO);
-	PlayerMove(2, 2, board, MARK_TWO);
-	PlayerMove(1, 3, board, MARK_TWO);
-	// display the board
-	DisplayBoard(board);
-	// display victory message
-	DisplayVictoryMessage(VictoryCheck(CONSECUTIVE_MARKS_REQUIRED, board));
-
-	// PRODUCE A MULTIPLE PLAYER VICTORY
-	// initialize board
-	InitializeBoard(board);
-	// populate board
-	PlayerMove(4, 1, board, MARK_ONE);
-	PlayerMove(4, 2, board, MARK_ONE);
-	PlayerMove(4, 3, board, MARK_ONE);
-
-	PlayerMove(3, 1, board, MARK_TWO);
-	PlayerMove(2, 2, board, MARK_TWO);
-	PlayerMove(1, 3, board, MARK_TWO);
-
-	// display the board
-	DisplayBoard(board);
-	// display victory message
-	DisplayVictoryMessage(VictoryCheck(CONSECUTIVE_MARKS_REQUIRED, board));
-
-	// exit program
 	return 0;
 }
 
@@ -311,6 +279,7 @@ int VictoryCheck(int winRequirement, char board[ROWS][COLS]) {
 	return 0;
 }
 
+
 void DisplayVictoryMessage(int victoryCode) {
 	// display the victory condition results
 	switch (victoryCode) {
@@ -319,11 +288,11 @@ void DisplayVictoryMessage(int victoryCode) {
 		break;
 
 	case MARK_ONE_VICTORY:
-		printf("MARK_ONE has won the game.\n");
+		printf("Player One has won the game!\n");
 		break;
 
 	case MARK_TWO_VICTORY:
-		printf("MARK_TWO has won the game.\n");
+		printf("Player Two has won the game!\n");
 		break;
 
 	case TIE:
@@ -355,4 +324,14 @@ void errorHandler(char errorCode) {
 	default:
 		break;
 	}
+}
+
+void clearScreen() {
+	#if defined(__linux__) || defined(__unix__) || defined(__APPLE__)
+		system("clear");
+	#endif
+
+	#if defined(_WIN32) || defined(_WIN64)
+		system("cls");
+	#endif
 }
