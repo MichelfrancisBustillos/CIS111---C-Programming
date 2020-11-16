@@ -12,9 +12,9 @@
 
 
 // ROWS and COLS must be between 1 and 9
-#define ROWS 3
+#define ROWS 4
 
-#define COLS 3
+#define COLS 4
 
 // MARKER CODES
 #define MARK_ONE 'X'
@@ -156,7 +156,7 @@ int VictoryCheck(int winRequirement, char board[ROWS][COLS]) {
 			if (board[r][c] == MARK_ONE) {	//Find a Mark One
 				markOneTally++;
 				if ((c + CONSECUTIVE_MARKS_REQUIRED - 1) < COLS) {	//Ensure it is in a winnable row
-					for (int x = 1; x < CONSECUTIVE_MARKS_REQUIRED; x++) {
+					for (int x = 1; x <= (CONSECUTIVE_MARKS_REQUIRED - 1); x++) {
 						if (board[r][c + x] == MARK_ONE) {	//Check row for win.
 							markOneTally++;
 						}
@@ -188,7 +188,7 @@ int VictoryCheck(int winRequirement, char board[ROWS][COLS]) {
 					markOneWins = TRUE;
 				}
 				markOneTally = 1;
-				if (((c + CONSECUTIVE_MARKS_REQUIRED - 1) > COLS) && ((r + CONSECUTIVE_MARKS_REQUIRED - 1) < ROWS)) {	//Ensure both column AND row are viable
+				if (((c - CONSECUTIVE_MARKS_REQUIRED + 1) >= 0) && ((r + CONSECUTIVE_MARKS_REQUIRED - 1) < ROWS)) {	//Ensure both column AND row are viable
 					for (int x = 1; x < CONSECUTIVE_MARKS_REQUIRED; x++) {	//Check column & row for win.
 						if (board[r + x][c - x] == MARK_ONE) {
 							markOneTally++;
@@ -203,7 +203,7 @@ int VictoryCheck(int winRequirement, char board[ROWS][COLS]) {
 			else if (board[r][c] == MARK_TWO) { //Find a Mark Two
 				markTwoTally++;
 				if ((c + CONSECUTIVE_MARKS_REQUIRED - 1) < COLS) {	//Ensure it is in a winnable row
-					for (int x = 1; x <= CONSECUTIVE_MARKS_REQUIRED; x++) {	//Check row for win.
+					for (int x = 1; x <= (CONSECUTIVE_MARKS_REQUIRED - 1); x++) {	//Check row for win.
 						if (board[r][c + x] == MARK_TWO) {
 							markTwoTally++;
 						}
@@ -235,7 +235,7 @@ int VictoryCheck(int winRequirement, char board[ROWS][COLS]) {
 					markTwoWins = TRUE;
 				}
 				markTwoTally = 1;
-				if (((c + CONSECUTIVE_MARKS_REQUIRED - 1) > COLS) && ((r + CONSECUTIVE_MARKS_REQUIRED - 1) < ROWS)) {	//Ensure both column AND row are viable
+				if (((c + CONSECUTIVE_MARKS_REQUIRED - 1) >= 0) && ((r + CONSECUTIVE_MARKS_REQUIRED - 1) < ROWS)) {	//Ensure both column AND row are viable
 					for (int x = 1; x < CONSECUTIVE_MARKS_REQUIRED; x++) {	//Check column & row for downleft win.
 						if (board[r + x][c - x] == MARK_TWO) {
 							markTwoTally++;
@@ -254,30 +254,6 @@ int VictoryCheck(int winRequirement, char board[ROWS][COLS]) {
 			markTwoTally = 0;
 		}
 	}
-
-
-	if ((markOneWins == FALSE) && (markTwoWins == FALSE) && (blankSeen == TRUE)) {
-		return NO_WIN;
-	}
-	else if ((markOneWins != TRUE) && (markTwoWins != TRUE) && (blankSeen == FALSE)) {
-		return TIE;
-	}
-	else if ((markOneWins == TRUE) && (markTwoWins == TRUE)) {
-		return ERROR;
-	}
-	else if (markOneWins == TRUE) {
-		return MARK_ONE_VICTORY;
-	}
-	else if (markTwoWins == TRUE) {
-		return MARK_TWO_VICTORY;
-	}
-
-	else {
-		return ERROR;
-	}
-
-	return 0;
-}
 
 
 void DisplayVictoryMessage(int victoryCode) {

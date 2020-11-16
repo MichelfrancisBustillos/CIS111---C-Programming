@@ -42,7 +42,6 @@ void DisplayBoard(char[ROWS][COLS]);
 int PlayerMove(int, int, char[ROWS][COLS], char);
 int VictoryCheck(int, char[ROWS][COLS]);
 void DisplayVictoryMessage(int);
-void errorHandler(char);
 
 // MAIN
 int main() {
@@ -52,9 +51,31 @@ int main() {
 	// PRODUCE A NO_WIN CONDITION
 	// initialize board
 	InitializeBoard(board);
+
 	// populate board
-	PlayerMove(1, 1, board, MARK_ONE);
-	PlayerMove(1, 2, board, MARK_ONE);
+	switch (PlayerMove(1, 1, board, MARK_ONE)) {
+	case CODE_COLLISION:
+		printf("That spot is taken!\n");
+		break;
+	case CODE_OOB:
+		printf("That is off the board!\n");
+		break;
+	case CODE_OK:
+	default:
+		break;
+	}
+	switch (PlayerMove(1, 2, board, MARK_ONE)) {
+	case CODE_COLLISION:
+		printf("That spot is taken!\n");
+		break;
+	case CODE_OOB:
+		printf("That is off the board!\n");
+		break;
+	case CODE_OK:
+	default:
+		break;
+	}
+
 	// display the board
 	DisplayBoard(board);
 	// display victory message
@@ -64,9 +85,39 @@ int main() {
 	// initialize board
 	InitializeBoard(board);
 	// populate board
-	PlayerMove(2, 1, board, MARK_TWO);
-	PlayerMove(2, 2, board, MARK_TWO);
-	PlayerMove(2, 3, board, MARK_TWO);
+	switch (PlayerMove(2, 1, board, MARK_ONE)) {
+	case CODE_COLLISION:
+		printf("That spot is taken!\n");
+		break;
+	case CODE_OOB:
+		printf("That is off the board!\n");
+		break;
+	case CODE_OK:
+	default:
+		break;
+	}
+	switch (PlayerMove(2, 2, board, MARK_ONE)) {
+	case CODE_COLLISION:
+		printf("That spot is taken!\n");
+		break;
+	case CODE_OOB:
+		printf("That is off the board!\n");
+		break;
+	case CODE_OK:
+	default:
+		break;
+	}
+	switch (PlayerMove(2, 3, board, MARK_ONE)) {
+	case CODE_COLLISION:
+		printf("That spot is taken!\n");
+		break;
+	case CODE_OOB:
+		printf("That is off the board!\n");
+		break;
+	case CODE_OK:
+	default:
+		break;
+	}
 	// display the board
 	DisplayBoard(board);
 	// display victory message
@@ -76,9 +127,39 @@ int main() {
 	// initialize board
 	InitializeBoard(board);
 	// populate board
-	PlayerMove(1, 1, board, MARK_TWO);
-	PlayerMove(2, 1, board, MARK_TWO);
-	PlayerMove(3, 1, board, MARK_TWO);
+	switch (PlayerMove(1, 1, board, MARK_ONE)) {
+	case CODE_COLLISION:
+		printf("That spot is taken!\n");
+		break;
+	case CODE_OOB:
+		printf("That is off the board!\n");
+		break;
+	case CODE_OK:
+	default:
+		break;
+	}
+	switch (PlayerMove(2, 1, board, MARK_ONE)) {
+	case CODE_COLLISION:
+		printf("That spot is taken!\n");
+		break;
+	case CODE_OOB:
+		printf("That is off the board!\n");
+		break;
+	case CODE_OK:
+	default:
+		break;
+	}
+	switch (PlayerMove(3, 1, board, MARK_ONE)) {
+	case CODE_COLLISION:
+		printf("That spot is taken!\n");
+		break;
+	case CODE_OOB:
+		printf("That is off the board!\n");
+		break;
+	case CODE_OK:
+	default:
+		break;
+	}
 	// display the board
 	DisplayBoard(board);
 	// display victory message
@@ -88,9 +169,39 @@ int main() {
 	// initialize board
 	InitializeBoard(board);
 	// populate board
-	PlayerMove(1, 1, board, MARK_ONE);
-	PlayerMove(2, 2, board, MARK_ONE);
-	PlayerMove(3, 3, board, MARK_ONE);
+	switch (PlayerMove(1, 1, board, MARK_ONE)) {
+	case CODE_COLLISION:
+		printf("That spot is taken!\n");
+		break;
+	case CODE_OOB:
+		printf("That is off the board!\n");
+		break;
+	case CODE_OK:
+	default:
+		break;
+	}
+	switch (PlayerMove(2, 2, board, MARK_ONE)) {
+	case CODE_COLLISION:
+		printf("That spot is taken!\n");
+		break;
+	case CODE_OOB:
+		printf("That is off the board!\n");
+		break;
+	case CODE_OK:
+	default:
+		break;
+	}
+	switch (PlayerMove(3, 3, board, MARK_ONE)) {
+	case CODE_COLLISION:
+		printf("That spot is taken!\n");
+		break;
+	case CODE_OOB:
+		printf("That is off the board!\n");
+		break;
+	case CODE_OK:
+	default:
+		break;
+	}
 	// display the board
 	DisplayBoard(board);
 	// display victory message
@@ -100,9 +211,39 @@ int main() {
 	// initialize board
 	InitializeBoard(board);
 	// populate board
-	PlayerMove(3, 1, board, MARK_TWO);
-	PlayerMove(2, 2, board, MARK_TWO);
-	PlayerMove(1, 3, board, MARK_TWO);
+	switch (PlayerMove(3, 1, board, MARK_ONE)) {
+	case CODE_COLLISION:
+		printf("That spot is taken!\n");
+		break;
+	case CODE_OOB:
+		printf("That is off the board!\n");
+		break;
+	case CODE_OK:
+	default:
+		break;
+	}
+	switch (PlayerMove(2, 2, board, MARK_ONE)) {
+	case CODE_COLLISION:
+		printf("That spot is taken!\n");
+		break;
+	case CODE_OOB:
+		printf("That is off the board!\n");
+		break;
+	case CODE_OK:
+	default:
+		break;
+	}
+	switch (PlayerMove(1, 3, board, MARK_ONE)) {
+	case CODE_COLLISION:
+		printf("That spot is taken!\n");
+		break;
+	case CODE_OOB:
+		printf("That is off the board!\n");
+		break;
+	case CODE_OK:
+	default:
+		break;
+	}
 	// display the board
 	DisplayBoard(board);
 	// display victory message
@@ -112,13 +253,73 @@ int main() {
 	// initialize board
 	InitializeBoard(board);
 	// populate board
-	PlayerMove(4, 1, board, MARK_ONE);
-	PlayerMove(4, 2, board, MARK_ONE);
-	PlayerMove(4, 3, board, MARK_ONE);
+	switch (PlayerMove(4, 1, board, MARK_TWO)) {
+	case CODE_COLLISION:
+		printf("That spot is taken!\n");
+		break;
+	case CODE_OOB:
+		printf("That is off the board!\n");
+		break;
+	case CODE_OK:
+	default:
+		break;
+	}	
+	switch (PlayerMove(4, 2, board, MARK_TWO)) {
+	case CODE_COLLISION:
+		printf("That spot is taken!\n");
+		break;
+	case CODE_OOB:
+		printf("That is off the board!\n");
+		break;
+	case CODE_OK:
+	default:
+		break;
+	}	
+	switch (PlayerMove(4, 3, board, MARK_TWO)) {
+	case CODE_COLLISION:
+		printf("That spot is taken!\n");
+		break;
+	case CODE_OOB:
+		printf("That is off the board!\n");
+		break;
+	case CODE_OK:
+	default:
+		break;
+	}
 
-	PlayerMove(3, 1, board, MARK_TWO);
-	PlayerMove(2, 2, board, MARK_TWO);
-	PlayerMove(1, 3, board, MARK_TWO);
+	switch (PlayerMove(3, 1, board, MARK_ONE)) {
+	case CODE_COLLISION:
+		printf("That spot is taken!\n");
+		break;
+	case CODE_OOB:
+		printf("That is off the board!\n");
+		break;
+	case CODE_OK:
+	default:
+		break;
+	}
+	switch (PlayerMove(2, 2, board, MARK_ONE)) {
+	case CODE_COLLISION:
+		printf("That spot is taken!\n");
+		break;
+	case CODE_OOB:
+		printf("That is off the board!\n");
+		break;
+	case CODE_OK:
+	default:
+		break;
+	}
+	switch (PlayerMove(1, 3, board, MARK_ONE)) {
+	case CODE_COLLISION:
+		printf("That spot is taken!\n");
+		break;
+	case CODE_OOB:
+		printf("That is off the board!\n");
+		break;
+	case CODE_OK:
+	default:
+		break;
+	}
 
 	// display the board
 	DisplayBoard(board);
@@ -188,7 +389,7 @@ int VictoryCheck(int winRequirement, char board[ROWS][COLS]) {
 			if (board[r][c] == MARK_ONE) {	//Find a Mark One
 				markOneTally++;
 				if ((c + CONSECUTIVE_MARKS_REQUIRED - 1) < COLS) {	//Ensure it is in a winnable row
-					for (int x = 1; x < CONSECUTIVE_MARKS_REQUIRED; x++) {
+					for (int x = 1; x <= (CONSECUTIVE_MARKS_REQUIRED - 1); x++) {
 						if (board[r][c + x] == MARK_ONE) {	//Check row for win.
 							markOneTally++;
 						}
@@ -220,7 +421,7 @@ int VictoryCheck(int winRequirement, char board[ROWS][COLS]) {
 					markOneWins = TRUE;
 				}
 				markOneTally = 1;
-				if (((c + CONSECUTIVE_MARKS_REQUIRED - 1) > COLS) && ((r + CONSECUTIVE_MARKS_REQUIRED - 1) < ROWS)) {	//Ensure both column AND row are viable
+				if (((c - CONSECUTIVE_MARKS_REQUIRED + 1) >= 0) && ((r + CONSECUTIVE_MARKS_REQUIRED - 1) < ROWS)) {	//Ensure both column AND row are viable
 					for (int x = 1; x < CONSECUTIVE_MARKS_REQUIRED; x++) {	//Check column & row for win.
 						if (board[r + x][c - x] == MARK_ONE) {
 							markOneTally++;
@@ -235,7 +436,7 @@ int VictoryCheck(int winRequirement, char board[ROWS][COLS]) {
 			else if (board[r][c] == MARK_TWO) { //Find a Mark Two
 				markTwoTally++;
 				if ((c + CONSECUTIVE_MARKS_REQUIRED - 1) < COLS) {	//Ensure it is in a winnable row
-					for (int x = 1; x <= CONSECUTIVE_MARKS_REQUIRED; x++) {	//Check row for win.
+					for (int x = 1; x <= (CONSECUTIVE_MARKS_REQUIRED - 1); x++) {	//Check row for win.
 						if (board[r][c + x] == MARK_TWO) {
 							markTwoTally++;
 						}
@@ -267,7 +468,7 @@ int VictoryCheck(int winRequirement, char board[ROWS][COLS]) {
 					markTwoWins = TRUE;
 				}
 				markTwoTally = 1;
-				if (((c + CONSECUTIVE_MARKS_REQUIRED - 1) > COLS) && ((r + CONSECUTIVE_MARKS_REQUIRED - 1) < ROWS)) {	//Ensure both column AND row are viable
+				if (((c + CONSECUTIVE_MARKS_REQUIRED - 1) >= 0) && ((r + CONSECUTIVE_MARKS_REQUIRED - 1) < ROWS)) {	//Ensure both column AND row are viable
 					for (int x = 1; x < CONSECUTIVE_MARKS_REQUIRED; x++) {	//Check column & row for downleft win.
 						if (board[r + x][c - x] == MARK_TWO) {
 							markTwoTally++;
@@ -287,11 +488,11 @@ int VictoryCheck(int winRequirement, char board[ROWS][COLS]) {
 		}
 	}
 
-
+	printf("Mark One: %d; Mark Two: %d\n", markOneWins, markTwoWins);
 	if ((markOneWins == FALSE) && (markTwoWins == FALSE) && (blankSeen == TRUE)) {
 		return NO_WIN;
 	}
-	else if ((markOneWins != TRUE) && (markTwoWins != TRUE) && (blankSeen == FALSE)) {
+	else if ((markOneWins == FALSE) && (markTwoWins == FALSE) && (blankSeen == FALSE)) {
 		return TIE;
 	}
 	else if ((markOneWins == TRUE) && (markTwoWins == TRUE)) {
@@ -310,6 +511,7 @@ int VictoryCheck(int winRequirement, char board[ROWS][COLS]) {
 
 	return 0;
 }
+
 
 void DisplayVictoryMessage(int victoryCode) {
 	// display the victory condition results
@@ -340,19 +542,5 @@ void DisplayVictoryMessage(int victoryCode) {
 
 	default:
 		printf("DisplayVictoryMessage() was passed an invalid victoryCode.\n");
-	}
-}
-
-void errorHandler(char errorCode) {
-	switch (errorCode) {
-	case CODE_COLLISION:
-		printf("That spot is taken!\n");
-		break;
-	case CODE_OOB:
-		printf("That is off the board!\n");
-		break;
-	case CODE_OK:
-	default:
-		break;
 	}
 }
