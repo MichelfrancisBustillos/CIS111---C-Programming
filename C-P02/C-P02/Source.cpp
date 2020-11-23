@@ -255,7 +255,6 @@ int VictoryCheck(int winRequirement, char board[ROWS][COLS]) {
 		}
 	}
 
-	printf("Mark One: %d; Mark Two: %d\n", markOneWins, markTwoWins);
 	if ((markOneWins == FALSE) && (markTwoWins == FALSE) && (blankSeen == TRUE)) {
 		return NO_WIN;
 	}

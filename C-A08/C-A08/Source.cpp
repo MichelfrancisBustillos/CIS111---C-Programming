@@ -85,7 +85,7 @@ int main() {
 	// initialize board
 	InitializeBoard(board);
 	// populate board
-	switch (PlayerMove(2, 1, board, MARK_ONE)) {
+	switch (PlayerMove(2, 1, board, MARK_TWO)) {
 	case CODE_COLLISION:
 		printf("That spot is taken!\n");
 		break;
@@ -96,7 +96,7 @@ int main() {
 	default:
 		break;
 	}
-	switch (PlayerMove(2, 2, board, MARK_ONE)) {
+	switch (PlayerMove(2, 2, board, MARK_TWO)) {
 	case CODE_COLLISION:
 		printf("That spot is taken!\n");
 		break;
@@ -107,7 +107,7 @@ int main() {
 	default:
 		break;
 	}
-	switch (PlayerMove(2, 3, board, MARK_ONE)) {
+	switch (PlayerMove(2, 3, board, MARK_TWO)) {
 	case CODE_COLLISION:
 		printf("That spot is taken!\n");
 		break;
@@ -488,7 +488,6 @@ int VictoryCheck(int winRequirement, char board[ROWS][COLS]) {
 		}
 	}
 
-	printf("Mark One: %d; Mark Two: %d\n", markOneWins, markTwoWins);
 	if ((markOneWins == FALSE) && (markTwoWins == FALSE) && (blankSeen == TRUE)) {
 		return NO_WIN;
 	}
