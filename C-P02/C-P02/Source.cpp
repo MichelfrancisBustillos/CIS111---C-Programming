@@ -255,6 +255,29 @@ int VictoryCheck(int winRequirement, char board[ROWS][COLS]) {
 		}
 	}
 
+	printf("Mark One: %d; Mark Two: %d\n", markOneWins, markTwoWins);
+	if ((markOneWins == FALSE) && (markTwoWins == FALSE) && (blankSeen == TRUE)) {
+		return NO_WIN;
+	}
+	else if ((markOneWins == FALSE) && (markTwoWins == FALSE) && (blankSeen == FALSE)) {
+		return TIE;
+	}
+	else if ((markOneWins == TRUE) && (markTwoWins == TRUE)) {
+		return ERROR;
+	}
+	else if (markOneWins == TRUE) {
+		return MARK_ONE_VICTORY;
+	}
+	else if (markTwoWins == TRUE) {
+		return MARK_TWO_VICTORY;
+	}
+
+	else {
+		return ERROR;
+	}
+
+	return 0;
+}
 
 void DisplayVictoryMessage(int victoryCode) {
 	// display the victory condition results
